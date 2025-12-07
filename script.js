@@ -22,10 +22,15 @@ const allCategories = {
 
 function timeAgo(timestamp) {
   const timeDif = Date.now() - timestamp; //différence en ms
-  const min = Math.floor(timeDif/1000);
+  const min = Math.floor(timeDif/1000/60);
   const hours = Math.floor(min/60);
   const days = Math.floor(hours/24);
+
   if(min < 60) {
-    return `${min} ago`
-  } 
+    return `${min}m ago`;
+  } else if(hours < 24) {
+    return `${hours}h ago`;
+  } else {
+    return `${days}d ago`;
+  }
 }
