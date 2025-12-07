@@ -14,3 +14,18 @@ const allCategories = {
   432: { category: 'You Can Do This!', className: 'motivation' },
   560: { category: 'Backend Development', className: 'backend' }
 };
+
+// const timestamp = new Date().toISOString();
+// console.log(timestamp); 
+// Example output: "2025-12-07T17:25:00.000Z"
+
+
+function timeAgo(timestamp) {
+  const timeDif = Date.now() - timestamp; //différence en ms
+  const min = Math.floor(timeDif/1000);
+  const hours = Math.floor(min/60);
+  const days = Math.floor(hours/24);
+  if(min < 60) {
+    return `${min} ago`
+  } 
+}
