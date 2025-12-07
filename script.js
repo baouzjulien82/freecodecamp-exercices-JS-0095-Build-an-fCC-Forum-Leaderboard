@@ -34,3 +34,21 @@ function timeAgo(timestamp) {
     return `${days}d ago`;
   }
 }
+
+function viewCount(numberOfViews) {
+  if(numberOfViews >= 1000) {
+    return `${Math.floor(numberOfViews/1000)}k`
+  } else {
+    return numberOfViews;
+  }
+}
+
+function forumCategory(selectedCategoryId) {
+  if (allCategories.hasOwnProperty(selectedCategoryId)) {
+    const categoryObj = allCategories[selectedCategoryId];
+    return `<a class="category ${categoryObj.className}" href="${forumCategoryUrl}${categoryObj.className}/${selectedCategoryId}">${categoryObj.category}</a>`;
+;
+  } else {
+    return `<a class="category general" href="${forumCategoryUrl}general/${selectedCategoryId}">General</a>`;
+  }
+}
