@@ -52,3 +52,7 @@ function forumCategory(selectedCategoryId) {
     return `<a class="category general" href="${forumCategoryUrl}general/${selectedCategoryId}">General</a>`;
   }
 }
+
+function avatars(postersArray, usersArray) {
+  
+}
