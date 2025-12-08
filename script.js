@@ -15,6 +15,8 @@ const allCategories = {
   560: { category: 'Backend Development', className: 'backend' }
 };
 
+const postsContainer = document.getElementById('posts-container');
+
 // const timestamp = new Date().toISOString();
 // console.log(timestamp); 
 // Example output: "2025-12-07T17:25:00.000Z"
@@ -69,5 +71,21 @@ function avatars(postersArray, usersArray) {
 
     return `<img src="${src}" alt="${p.name}" />`;
   }).join('');
-}
+};
 
+function showLatestPosts(object) {
+  const {users, topic_list} = object;
+  const topics = topic_list.topics;
+
+  topics.map(topic => {
+    const trElement = `
+    <tr>
+      <td><a class="${topic.title}" href="${forumTopicUrl}${topic.slug}/${topic.id}">${topic.title}${forumCategory(topic.category_id)}</td>
+      <td><div class="avatar-container">${avatars(topic.posters, users)}</div></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    `
+  })
+};
