@@ -74,18 +74,27 @@ function avatars(postersArray, usersArray) {
 };
 
 function showLatestPosts(object) {
-  const {users, topic_list} = object;
+  const { users, topic_list } = object;
   const topics = topic_list.topics;
 
-  topics.map(topic => {
-    const trElement = `
-    <tr>
-      <td><a class="${topic.title}" href="${forumTopicUrl}${topic.slug}/${topic.id}">${topic.title}${forumCategory(topic.category_id)}</td>
-      <td><div class="avatar-container">${avatars(topic.posters, users)}</div></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    `
-  })
-};
+  const rows = topics.map(topic => {
+    return `
+      <tr>
+        <td>
+          <a class="post-title" href="${forumTopicUrl}${topic.slug}/${topic.id}">
+            ${topic.title}
+          </a>
+          ${forumCategory(topic.category_id)}
+        </td>
+        <td>
+          <div class="avatar-container">${avatars(topic.posters, users)}</div>
+        </td>
+        <td>${topic.posts_count - 1}</td>
+        <td>${viewCount(topic.views)}</td>
+        <td>${timeAgo(new Date(topic.bumped_at).getTime())}</td>
+      </tr>
+    `;
+  }).join('');
+
+  postsContainer.innerHTML = rows;
+}
