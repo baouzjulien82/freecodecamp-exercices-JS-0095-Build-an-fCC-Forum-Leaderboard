@@ -129,3 +129,5 @@ async function fetchData() {
     console.log(error);                        // log en cas d'erreur
   }
 }
+
+fetchData() // Affichage test
