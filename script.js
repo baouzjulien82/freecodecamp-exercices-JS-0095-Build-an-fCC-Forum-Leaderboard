@@ -54,5 +54,20 @@ function forumCategory(selectedCategoryId) {
 }
 
 function avatars(postersArray, usersArray) {
-  
+  const userMap = Object.fromEntries(usersArray.map(u => [u.id, u]));
+  return postersArray.map(p => {
+    const user = userMap[p.user_id];
+    if (!user) return '';
+
+    // Remplacer {size} par 30
+    let template = user.avatar_template.replace('{size}', 30);
+
+    // Si le chemin est relatif, on ajoute avatarUrl devant
+    const src = template.startsWith('/')
+      ? `${avatarUrl}${template}`
+      : template;
+
+    return `<img src="${src}" alt="${p.name}" />`;
+  }).join('');
 }
+
